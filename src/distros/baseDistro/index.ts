@@ -8,7 +8,7 @@ export default class baseDistro {
     public name: string;
     public prettyName: string;
 
-    private static windowsMsg = "windows user looooool (windows support coming soon, why not try linux?)";
+    private static windowsMsg = "windows user lol (windows support coming soon, why not try linux?)";
 
     public logo = logo;
 
