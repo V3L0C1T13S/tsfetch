@@ -7,8 +7,9 @@ export default class baseDistro {
 
     public name: string;
     public prettyName: string;
+    public idLike: string;
 
-    private static windowsMsg = "windows user lol (windows support coming soon, why not try linux?)";
+    public static windowsMsg = "windows user lol (windows support coming soon, why not try linux?)";
 
     public logo = logo;
 
@@ -18,6 +19,7 @@ export default class baseDistro {
 
         this.name = baseDistro.getName(this.osFile);
         this.prettyName = this.getPrettyName();
+        this.idLike = baseDistro.getNameLike(this.osFile);
     }
 
     public static getOsFilePath(): string {
@@ -27,10 +29,16 @@ export default class baseDistro {
 
     public static getName(osFile: string): string {
         // Get the name of the distro
-        const name = osFile.split("ID_LIKE=")[1]?.split("\n")[0];
+        const name = osFile.split("ID")[1]?.split("\n")[0];
 
         // Return the name of the distro
         return name ?? this.windowsMsg;
+    }
+
+    public static getNameLike(osFile: string): string {
+        const nameLike = osFile.split("ID_LIKE=")[1]?.split("\n")[0];
+
+        return nameLike ?? this.windowsMsg;
     }
 
     private getPrettyName(): string {
